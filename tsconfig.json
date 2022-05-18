@@ -1,0 +1,30 @@
+{
+    "compilerOptions": {
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "module": "commonjs",
+        "esModuleInterop": true,
+        "target": "es2018",
+        "noImplicitAny": true,
+        "moduleResolution": "node",
+        "inlineSourceMap": true,
+        "inlineSources": true,
+        "outDir": "dist",
+        "baseUrl": ".",
+        "paths": {
+            "*": [
+                "node_modules/*"
+            ]
+        },
+        "lib": ["es2018", "esnext.asynciterable"]
+    },
+    "include": [
+        "src/**/*",
+        "prisma/**/*"
+    ],
+    "exclude": [
+        "./tests/",
+        "./node_modules/",
+        "./dist/"
+    ]
+}

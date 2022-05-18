@@ -1,0 +1,43 @@
+// Generators go here
+generator client {
+    provider = "prisma-client-js"
+}
+
+generator typegraphql {
+    provider = "typegraphql-prisma"
+}
+
+// Datasources go here
+datasource db {
+    provider = "mongodb"
+    url      = env("MONGO_DATABASE_URL")
+}
+
+// Models go here
+model Owner {
+    id        String    @id @default(auto()) @map("_id") @db.ObjectId
+    firstName String
+    lastName  String
+    Artwork   Artwork[]
+}
+
+model Attribute {
+    id        String   @id @default(auto()) @map("_id") @db.ObjectId
+    traitType String
+    value     String
+    Artwork   Artwork? @relation(fields: [artworkId], references: [id])
+    artworkId String?  @db.ObjectId
+}
+
+model Artwork {
+    id          String      @id @default(auto()) @map("_id") @db.ObjectId
+    title       String
+    description String
+    attributes  Attribute[]
+    owner       Owner       @relation(fields: [ownerId], references: [id])
+    image       String
+    imageUrl    String
+    price       Int
+    like        Int
+    ownerId     String      @db.ObjectId
+}
